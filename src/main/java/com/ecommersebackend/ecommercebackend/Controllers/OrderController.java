@@ -25,12 +25,12 @@ public class OrderController {
     }
 
     @PutMapping(value = "/update-order/{id}")
-    public Order updateOrder(@PathVariable long id, @RequestBody Order order) {
+    public String updateOrder(@PathVariable long id, @RequestBody Order order) {
         Order updatedOrder = orderRepo.findById(id).get();
         updatedOrder.setDate(order.getDate());
         updatedOrder.setCost(order.getCost());
         orderRepo.save(updatedOrder);
-        return order;
+        return id + " has been updated.";
     }
 
     @DeleteMapping(value = "/delete-order/{id}")
