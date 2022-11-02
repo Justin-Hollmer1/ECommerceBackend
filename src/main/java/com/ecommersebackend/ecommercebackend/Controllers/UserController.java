@@ -25,6 +25,9 @@ public class UserController {
         return userRepo.findAll();
     }
 
+//    @GetMapping(value = "/user-{id}")
+//    public String
+
 //    Post
     @PostMapping(value = "/save-user")
     public String postUser(@RequestBody User user) {
