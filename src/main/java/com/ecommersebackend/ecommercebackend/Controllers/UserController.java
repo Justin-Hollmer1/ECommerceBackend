@@ -50,6 +50,6 @@ public class UserController {
     public String deleteUser(@PathVariable long id) {
         User userToDelete = userRepo.findById(id).get();
         userRepo.delete(userToDelete);
-        return "Deleted user: " + id;
+        return "Deleted user: " + userToDelete.getUsername();
     }
 }
