@@ -33,4 +33,10 @@ public class OrderController {
         return order;
     }
 
+    @DeleteMapping(value = "/delete-order/{id}")
+    public String deleteOrder(@PathVariable long id) {
+        orderRepo.delete(orderRepo.findById(id).get());
+        return id + " has been deleted";
+    }
+
 }
