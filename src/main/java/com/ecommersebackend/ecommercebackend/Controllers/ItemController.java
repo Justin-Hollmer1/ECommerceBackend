@@ -19,6 +19,11 @@ public class ItemController {
         return itemRepo.findAll();
     }
 
+    @GetMapping(value = "/get-item-by-id/{id}")
+    public Item getItemById(@PathVariable long id) {
+        return itemRepo.findById(id).get();
+    }
+
     @PostMapping(value = "/post-item")
     public String postItem(@RequestBody Item item) {
         itemRepo.save(item);
