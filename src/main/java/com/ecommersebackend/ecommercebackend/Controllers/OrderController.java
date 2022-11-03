@@ -13,17 +13,20 @@ public class OrderController {
     @Autowired
     OrderRepo orderRepo;
 
+//    Get all orders
     @GetMapping(value = "/get-orders")
     public List<Order> getOrders() {
         return orderRepo.findAll();
     }
 
+//    Post order
     @PostMapping(value = "/post-order")
     public String postOrder(@RequestBody Order order) {
         orderRepo.save(order);
         return "IT WORKED";
     }
 
+//    Update order by id
     @PutMapping(value = "/update-order/{id}")
     public String updateOrder(@PathVariable long id, @RequestBody Order order) {
         Order updatedOrder = orderRepo.findById(id).get();
@@ -33,6 +36,7 @@ public class OrderController {
         return id + " has been updated.";
     }
 
+//    Delete by id
     @DeleteMapping(value = "/delete-order/{id}")
     public String deleteOrder(@PathVariable long id) {
         orderRepo.delete(orderRepo.findById(id).get());

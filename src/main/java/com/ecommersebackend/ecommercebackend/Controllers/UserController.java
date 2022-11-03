@@ -19,12 +19,13 @@ public class UserController {
         return "HELLO THERE";
     }
 
-//    Get
+//    Get all
     @GetMapping(value = "/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
 
+//    Get by id
     @GetMapping(value = "/user-{id}")
     public User getUserById(@PathVariable long id) {
         return userRepo.findById(id).get();
