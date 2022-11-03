@@ -25,6 +25,11 @@ public class UserController {
         return userRepo.findAll();
     }
 
+    @GetMapping(value = "/user-{id}")
+    public User getUserById(@PathVariable long id) {
+        return userRepo.findById(id).get();
+    }
+
 //    Post
     @PostMapping(value = "/save-user")
     public String postUser(@RequestBody User user) {
@@ -46,4 +51,10 @@ public class UserController {
 
 //    Delete
 
+    @DeleteMapping(value = "/delete-user/{id}")
+    public String deleteUser(@PathVariable long id) {
+        User userToDelete = userRepo.findById(id).get();
+        userRepo.delete(userToDelete);
+        return "Deleted user: " + userToDelete.getUsername();
+    }
 }
