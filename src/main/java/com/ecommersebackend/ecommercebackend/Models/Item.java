@@ -1,9 +1,11 @@
 package com.ecommersebackend.ecommercebackend.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -21,6 +23,19 @@ public class Item {
 
     @Column
     private String image_url;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "items")
+    private List<Order> orders;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
 
     public long getId() {
         return id;

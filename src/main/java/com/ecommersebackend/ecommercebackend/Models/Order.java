@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -21,6 +22,55 @@ public class Order {
     @JoinColumn(name = "userID")
     @JsonBackReference
     private User user;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "previous_order_items",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
+    private List<Item> items;
+
+
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public User getUser() {
@@ -50,4 +100,7 @@ public class Order {
         this.cost = cost;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
 }
