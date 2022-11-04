@@ -1,7 +1,9 @@
 package com.ecommersebackend.ecommercebackend.Controllers;
 
+import com.ecommersebackend.ecommercebackend.Models.Item;
 import com.ecommersebackend.ecommercebackend.Models.Order;
 import com.ecommersebackend.ecommercebackend.Models.User;
+import com.ecommersebackend.ecommercebackend.Repos.ItemRepo;
 import com.ecommersebackend.ecommercebackend.Repos.OrderRepo;
 import com.ecommersebackend.ecommercebackend.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class OrderController {
     OrderRepo orderRepo;
 
     @Autowired
+    ItemRepo itemRepo;
+
+    @Autowired
     UserRepo userRepo;
 
 //    Get all orders WORKING
@@ -23,6 +28,12 @@ public class OrderController {
     public List<Order> getOrders() {
         return orderRepo.findAll();
     }
+
+    @GetMapping(value = "/get-order/{id}")
+    public Order getOrderById(@PathVariable long id) {
+        return orderRepo.findById(id).get();
+    }
+
 
 //    Post order WORKING
     @PostMapping(value = "/post-order-user-id/{userid}")
@@ -32,6 +43,55 @@ public class OrderController {
         orderRepo.save(order);
         return "IT WORKED";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    Post order with item, this is what will add to the join table.
+//    Post
+    @PostMapping(value = "/post-order/{orderId}/item/{itemId}")
+    Order addOrderWithItem(
+            @PathVariable Long orderId,
+            @PathVariable Long itemId
+    ) {
+        Order order = orderRepo.findById(orderId).get();
+        Item item = itemRepo.findById(itemId).get();
+        order.addItem(item);
+        return orderRepo.save(order);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    Update order by id WORKING
     @PutMapping(value = "/update-order/{id}")
