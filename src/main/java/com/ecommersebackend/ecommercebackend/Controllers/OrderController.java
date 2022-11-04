@@ -29,6 +29,12 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
+    @GetMapping(value = "/get-order/{id}")
+    public Order getOrderById(@PathVariable long id) {
+        return orderRepo.findById(id).get();
+    }
+
+
 //    Post order WORKING
     @PostMapping(value = "/post-order-user-id/{userid}")
     public String postOrder(@PathVariable long userid, @RequestBody Order order) {
@@ -55,7 +61,7 @@ public class OrderController {
 
 //    Post order with item, this is what will add to the join table.
 //    Post
-    @PostMapping(value = "/post-order/{orderId}/student/{itemId}")
+    @PostMapping(value = "/post-order/{orderId}/item/{itemId}")
     Order addOrderWithItem(
             @PathVariable Long orderId,
             @PathVariable Long itemId
