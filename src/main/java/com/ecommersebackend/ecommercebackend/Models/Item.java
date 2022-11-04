@@ -25,7 +25,7 @@ public class Item {
     private String image_url;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany(mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Order> orders;
 
     public List<Order> getOrders() {
