@@ -13,32 +13,32 @@ public class UserController {
     @Autowired
     UserRepo userRepo;
 
-//    Default
+//    Default WORKING
     @GetMapping(value = "/")
     public String getPage() {
         return "HELLO THERE";
     }
 
-//    Get all
+//    Get all WORKING
     @GetMapping(value = "/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
 
-//    Get by id
+//    Get by id WORKING
     @GetMapping(value = "/user-{id}")
     public User getUserById(@PathVariable long id) {
         return userRepo.findById(id).get();
     }
 
-//    Post
+//    Post WORKING
     @PostMapping(value = "/save-user")
     public String postUser(@RequestBody User user) {
         userRepo.save(user);
         return "IT WORKS LETS GOOOOOOOOOOOOOO";
     }
 
-//    Update
+//    Update WORKING
     @PutMapping(value = "/update-user/{id}")
     public String updateUser(@PathVariable long id, @RequestBody User user) {
         User updatedUser = userRepo.findById(id).get();
@@ -50,7 +50,7 @@ public class UserController {
         return "Updated";
     }
 
-//    Delete
+//    Delete WORKING
 
     @DeleteMapping(value = "/delete-user/{id}")
     public String deleteUser(@PathVariable long id) {
