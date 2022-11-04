@@ -1,5 +1,7 @@
 package com.ecommersebackend.ecommercebackend.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,8 +16,20 @@ public class Order {
     private String date;
     @Column
     private double cost;
-    @Column
-    private long userID;
+
+    @ManyToOne
+    @JoinColumn(name = "userID")
+    @JsonBackReference
+    private User user;
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -35,10 +49,5 @@ public class Order {
     public void setCost(double cost) {
         this.cost = cost;
     }
-    public long getUserID() {
-        return userID;
-    }
-    public void setUserID(long userID) {
-        this.userID = userID;
-    }
+
 }

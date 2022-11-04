@@ -14,22 +14,28 @@ public class ItemController {
     @Autowired
     ItemRepo itemRepo;
 
+    // Get all items
     @GetMapping(value = "/get-items")
     public List<Item> getItems() {
         return itemRepo.findAll();
     }
 
+
+//    Get item by id
     @GetMapping(value = "/get-item-by-id/{id}")
     public Item getItemById(@PathVariable long id) {
         return itemRepo.findById(id).get();
     }
 
+
+    // Post item
     @PostMapping(value = "/post-item")
     public String postItem(@RequestBody Item item) {
         itemRepo.save(item);
         return "Item has been successfully added.";
     }
 
+//    Update item by id
     @PutMapping(value = "/update-item/{id}")
     public Item updateItem(@PathVariable long id, @RequestBody Item item) {
         Item itemToUpdate = itemRepo.findById(id).get();
@@ -40,6 +46,7 @@ public class ItemController {
         return item;
     }
 
+    // Delete item by id
     @DeleteMapping(value = "/delete-item/{id}")
     public Item deleteItem(@PathVariable long id) {
         Item itemToDelete = itemRepo.findById(id).get();
