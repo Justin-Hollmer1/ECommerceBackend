@@ -38,7 +38,7 @@ public class Order {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "previous_order_items",
             joinColumns = {@JoinColumn(name = "order_id")},
