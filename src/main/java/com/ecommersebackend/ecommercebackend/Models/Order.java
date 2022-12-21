@@ -23,21 +23,6 @@ public class Order {
     @JsonBackReference
     private User user;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "previous_order_items",
@@ -46,8 +31,6 @@ public class Order {
     )
     private List<Item> items;
 
-
-
     public List<Item> getItems() {
         return items;
     }
@@ -55,23 +38,6 @@ public class Order {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public User getUser() {
         return user;
