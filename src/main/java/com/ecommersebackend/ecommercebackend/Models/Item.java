@@ -36,7 +36,6 @@ public class Item {
         this.orders = orders;
     }
 
-
     public long getId() {
         return id;
     }
